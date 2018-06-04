@@ -59,4 +59,9 @@ class Router extends PhalconRouter
     {
         return $this->add($pattern, $paths, null, $position);
     }
+
+    public static function __callStatic($name, $arguments)
+    {
+        dd($name, $arguments);
+    }
 }

@@ -1,14 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: l-eru
- * Date: 2018/6/4
- * Time: 18:24
- */
-
 namespace L\Di;
 
-
+use L\Di\Services\ServiceInterface;
 use Phalcon\Config;
 use Phalcon\Di\FactoryDefault;
 
@@ -47,8 +40,21 @@ class Kernel extends FactoryDefault
         $this->setShared('config', $config);
     }
 
+    /**
+     * 加载系统需要的服务
+     */
     private function bootstrap(): void
     {
-        
+        $services = config('app.services', []);
+
+        foreach ($services as $serviceName => $className) {
+            $service = new $className();
+
+            if ($service instanceof ServiceInterface) {
+                $this->set($serviceName, function () use ($service) {
+                    return $service->boot();
+                }, $service->isShared());
+            }
+        }
     }
 }
