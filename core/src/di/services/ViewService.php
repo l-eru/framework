@@ -1,5 +1,5 @@
 <?php
-namespace di\services;
+namespace L\Di\services;
 
 use L\Di\Services\Services;
 use Phalcon\Mvc\View;

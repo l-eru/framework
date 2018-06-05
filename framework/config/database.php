@@ -7,7 +7,7 @@ return [
      *
      * mysql, postgresql, sqlite
      */
-    'default' => env('DB_ADAPTER', 'mysql'),
+    'adapter' => env('DB_ADAPTER', 'mysql'),
 
 
     /**

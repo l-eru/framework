@@ -68,7 +68,7 @@ if (!function_exists('env')) {
             $properties = new Ini($envPath);
         }
 
-        return $default ?: $properties[$key];
+        return $properties[$key] ?: $default;
     }
 }
 
